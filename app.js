@@ -89,17 +89,7 @@ app.get("/districts/:districtId/", async (request, response) => {
   response.send(convertDistrictDbObjectToResponseObject(district));
 });
 
-// app.post("/districts/", async (request, response) => {
-//   const { stateId, districtName, cases, cured, active, deaths } = request.body;
-//   const postDistrictQuery = `
-//   INSERT INTO
-//     district (state_id, district_name, cases, cured, active, deaths)
-//   VALUES
-//     (${stateId}, '${districtName}', ${cases}, ${cured}, ${active}, ${deaths});`;
-//   await database.run(postDistrictQuery);
-//   response.send("District Successfully Added");
-// });
-
+// post
 app.post("/districts/", async (request, response) => {
   const { stateId, districtName, cases, cured, active, deaths } = request.body;
   const postDistrictQuery = `
@@ -164,6 +154,7 @@ app.get("/states/:stateId/stats/", async (request, response) => {
     totalDeaths: stats["SUM(deaths)"],
   });
 });
+
 app.get("/districts/:districtId/details/", async (request, response) => {
   const { districtId } = request.params;
   const getStateNameQuery = `
@@ -180,4 +171,4 @@ app.get("/districts/:districtId/details/", async (request, response) => {
 });
 module.exports = app;
 
-// solution
+
